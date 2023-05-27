@@ -1,0 +1,138 @@
+using System;
+
+namespace CalculatorApp
+{
+    class MainClass
+    {
+        public static int firstNumber;
+        public static int secondNumber;
+        public static int result;
+
+       
+       
+       public static void Main(string[] args)
+        {
+            string userChoice;
+            do
+            {
+                Console.Clear();
+                string operatorSign;
+                Console.WriteLine("Enter an operation sign");
+                operatorSign = Console.ReadLine();
+                while (true)
+                {
+                    if (operatorSign.Equals("+")) 
+                    {
+                        Prompt("+");
+                    } 
+
+                    else if (operatorSign.Equals("*"))
+                    {
+                        Prompt("*");
+                    }
+
+                    else if (operatorSign.Equals("-"))
+                    {
+                        Prompt("-");
+                    }
+
+                    else if (operatorSign.Equals("/"))
+                    {
+                        Prompt("/");
+                    }
+
+                    else if (operatorSign.Equals("%"))
+                    {
+                        Prompt("%");
+                    }
+
+                    else
+                    {
+                        Console.WriteLine("Wrong input");
+                    }
+                    break;
+                }
+                //Console.WriteLine(firstNumber);
+                Console.WriteLine("Type yes to restart");
+                userChoice = Console.ReadLine();
+            } while (userChoice == "yes");
+
+        }
+
+        public static void Prompt(string sign)
+        {
+            Console.WriteLine("Enter first number");
+            string num1 = Console.ReadLine();
+            bool isTrueNUm1 = Int32.TryParse(num1, out int value1);
+
+            while(true)
+            {
+                if (isTrueNUm1)
+                {
+                    firstNumber = value1;
+                }
+                else
+                {
+                    Console.WriteLine("Wrong input");
+                }
+                break;
+            }
+
+            if (isTrueNUm1)
+            {
+                Console.WriteLine("Enter second number");
+                string num2 = Console.ReadLine();
+                bool isTrueNUm2 = Int32.TryParse(num2, out int value2);
+
+                /*if number one is wrong input, no chance for 
+                 * inputing number two.We just restart */
+                
+                    while (true)
+                    {
+
+                    if (isTrueNUm2)
+                    {
+                        secondNumber = value2;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Wrong input");
+                    }
+                    break;
+                }
+            }
+
+
+            switch (sign)
+                    {
+                        case "*":
+                            result = firstNumber * secondNumber;
+                            Console.WriteLine("The answer is: " + result);
+                            break;
+
+                        case "+":
+                            result = firstNumber + secondNumber;
+                            Console.WriteLine("The answer is: " + result);
+                            break;
+
+                        case "-":
+                            result = firstNumber - secondNumber;
+                            Console.WriteLine("The answer is: " + result);
+                            break;
+
+                        case "/":
+                            result = firstNumber / secondNumber;
+                            Console.WriteLine("The answer is: " + result);
+                            break;
+                        
+                        case "%":
+                            result = firstNumber % secondNumber;
+                            Console.WriteLine("The answer is: " + result);
+                            break;
+                        default:
+                            Console.WriteLine("Wrong input");
+                            break;
+                    }
+                }
+            }
+        }
